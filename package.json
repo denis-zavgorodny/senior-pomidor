@@ -1,0 +1,9 @@
+{
+    "name": "tomato-app",
+    "version": "0.1.0",
+    "main": "main.js",
+    "dependencies": {
+        "electron": "^1.7.10",
+        "moment": "^2.20.1"
+    }
+}
