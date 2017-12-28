@@ -5,5 +5,8 @@
     "dependencies": {
         "electron": "^1.7.10",
         "moment": "^2.20.1"
+    },
+    "scripts": {
+        "app": "env NODE_ENV=development ./node_modules/.bin/electron ."
     }
 }

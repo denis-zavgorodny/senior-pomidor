@@ -7,6 +7,7 @@ const defaultState = {
     break: "5", // minutes
     breakLong: "15", // minutes
     start: "10:00",
+    breakLongPeriod: 4,
     end: "23:50",
     simpleTimer: false
 };
@@ -23,12 +24,23 @@ module.exports = class Timeline {
     build() {
         let next = this.dayStart;
         const timeline = [];
+        var period = 1;
         while (next.isBefore(this.dayEnd)) {
             timeline.push({
                 from: next.format('X'),
-                to: next.add(this.config.interval, 'm').format('X')
+                to: next.add(this.config.interval, 'm').format('X'),
+                type: "INTERVAL"
             });
-            next = next.add(this.config.break, 'm');
+            timeline.push({
+                from: next.format('X'),
+                to: next.add(period % this.config.breakLongPeriod === 0 ? this.config.breakLong : this.config.break, 'm').format('X'),
+                type: period % this.config.breakLongPeriod === 0 ? "BREAKLONG" : "BREAK"
+            });
+            period++;
+        }
+        let last = timeline[timeline.length - 1];
+        if (last.type === 'BREAKLONG' || last.type === 'BREAK') {
+            timeline.splice(timeline.length - 1, 1);
         }
         return timeline;
     }

@@ -27,6 +27,8 @@ class Options extends React.Component {
             <label>Малый перерыв <input defaultValue={this.props.Options.break} name="break" onChange={this.fieldChange.bind(this)} /></label>
             <br />
             <label>Большой перерыв <input defaultValue={this.props.Options.breakLong} name="breakLong" onChange={this.fieldChange.bind(this)} /></label>
+            <br />
+            <label>Большой перерыв каждые <input defaultValue={this.props.Options.breakLongPeriod} name="breakLongPeriod" onChange={this.fieldChange.bind(this)} /></label>
 
             <br />
             <label>Перерыв на обед

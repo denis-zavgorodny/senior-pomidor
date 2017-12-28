@@ -1,3 +1,8 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
 nav a {
     display: inline-block;
     padding: 0 10px;
@@ -6,9 +11,11 @@ nav a.active {
     color: red;
 }
 .main-screen {
-    padding: 20px;
+    padding: 20px 0;
 }
-
+.start-button-wrapper {
+    padding: 2vw 0 0;
+}
 .start-button {
     display: block;
     width: 100px;
@@ -17,6 +24,7 @@ nav a.active {
     border: 1px solid red;
     border-radius: 50%;
     background-color: red;
+    margin: 0 auto;
 }
 .start-button span {
     display: inline-block;
@@ -32,25 +40,42 @@ nav a.active {
 .start-button.working {
     background-color: green;
 }
+.timeline-wrapper {
+    width: 100vw;
+    overflow: scroll;
+}
+
 .timeline {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0;
     margin: 0;
 }
 .timeline li {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     list-style-type: none;
-    background-color: red;
-    height: 10px;
-    width: 100px;
-    margin: 0 3px;
+    background-color: rgb(160, 25, 25);
+    height: 10vh;
+    width: 10vw;
+    border: 1px solid #fff;
+    position: relative;
+    opacity: 0.3;
 }
-.timeline li:first-child {
-    margin: 0 3px 0 0;
-}
-.timeline li:last-child {
-    margin: 0 0 0 3px;
+.timeline li.active {
+    opacity: 1;
 }
 
+.timeline li i {
+    display: none;
+}
+
+.timeline li.BREAK {
+    width: 1vw;
+    background-color: rgb(153, 145, 145);
+}
+.timeline li.BREAKLONG {
+    width: 5vw;
+    background-color: rgb(153, 145, 145);
+}

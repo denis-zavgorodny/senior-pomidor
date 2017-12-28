@@ -62,18 +62,27 @@ app.on('activate', () => {
 let pomodoroInterval;
 ipcMain.on('RUN_TIMER', (event, store) => {
     let timeline = new Timeline(store.Options);
+    let lastState, currentState;
     pomodoroInterval = setInterval(() => {
-        let now = new Date().getTime() / 1000;
+        let now = Math.round(new Date().getTime() / 1000);
         let inInterval = timeline.timeline.reduce((acc, el, index) => {
-            if (acc === null) return now >= el.from && now <= el.to ? index : false;
+            if (acc === null) return now >= el.from && now <= el.to ? index : null;
             return acc;
         }, null);
         event.sender.send('ON_INTERVAL', inInterval, timeline);
-
-    }, 1000);
+        if (timeline.timeline[inInterval]) {
+            currentState = timeline.timeline[inInterval].type;
+        }
+        if (lastState !== currentState) {
+            console.log(currentState);
+        }
+        lastState = currentState;
+    }, 500);
 });
 ipcMain.on('STOP_TIMER', (event, store) => {
     clearInterval(pomodoroInterval);
+    let timeline = new Timeline(store.Options);
+    event.sender.send('ON_INTERVAL', null, timeline);
 })
 
 // В этом файле вы можете включить код другого основного процесса
