@@ -16,32 +16,47 @@ class Options extends React.Component {
         this.setState(Options);
     }
     render() {
-        return <form onSubmit={this.submit.bind(this)}>
-            <label>Рабочий день
-                с <input defaultValue={this.props.Options.start} name="start" onChange={this.fieldChange.bind(this)} />
-                по <input defaultValue={this.props.Options.end} name="end" onChange={this.fieldChange.bind(this)} />
-            </label>
-            <br />
-            <label>Длина помидорки <input defaultValue={this.props.Options.interval} name="interval" onChange={this.fieldChange.bind(this)} /></label>
-            <br />
-            <label>Малый перерыв <input defaultValue={this.props.Options.break} name="break" onChange={this.fieldChange.bind(this)} /></label>
-            <br />
-            <label>Большой перерыв <input defaultValue={this.props.Options.breakLong} name="breakLong" onChange={this.fieldChange.bind(this)} /></label>
-            <br />
-            <label>Большой перерыв каждые <input defaultValue={this.props.Options.breakLongPeriod} name="breakLongPeriod" onChange={this.fieldChange.bind(this)} /></label>
+        return <div className="form-scroll"><form onSubmit={this.submit.bind(this)}>
+            <div className="form-group ">
+                <label>Начало рбочего дня</label>
+                <input className="form-control" defaultValue={this.props.Options.start} name="start" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <label>Конец рбочего дня</label>
+                <input className="form-control" defaultValue={this.props.Options.end} name="end" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <label>Длина помидорки</label>
+                <input className="form-control" defaultValue={this.props.Options.interval} name="interval" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <label>Малый перерыв</label>
+                <input className="form-control" defaultValue={this.props.Options.break} name="break" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <label>Большой перерыв</label>
+                <input className="form-control" defaultValue={this.props.Options.breakLong} name="breakLong" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <label>Большой перерыв каждые</label>
+                <input className="form-control" defaultValue={this.props.Options.breakLongPeriod} name="breakLongPeriod" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <label>Перерыв на обед</label>
+                <input className="form-control" defaultValue={this.props.Options.lunch_from} name="lunch_from" onChange={this.fieldChange.bind(this)} />
+            </div>
+            <div className="form-group ">
+                <input className="form-control" defaultValue={this.props.Options.lunch_to} name="lunch_to" onChange={this.fieldChange.bind(this)} />
+            </div>
 
-            <br />
-            <label>Перерыв на обед
-                с <input defaultValue={this.props.Options.lunch_from} name="lunch_from" onChange={this.fieldChange.bind(this)} />
-                по <input defaultValue={this.props.Options.lunch_to} name="lunch_to" onChange={this.fieldChange.bind(this)} />
-            </label>
-
-            <br />
-            <label><input type="checkbox" defaultValue={this.props.Options.simpleTimer} defaultChecked={this.props.Options.simpleTimer} name="simpleTimer" onChange={this.fieldChangeCheckbox.bind(this)}/>Режим простого таймера?</label>
-            <br />
-            <br />
-            <button type="submit">Сохранить</button>
-        </form>
+            <div className="checkbox">
+                <label><input type="checkbox" defaultValue={this.props.Options.simpleTimer} defaultChecked={this.props.Options.simpleTimer} name="simpleTimer" onChange={this.fieldChangeCheckbox.bind(this)} />
+                Режим простого таймера?</label>
+            </div>
+            <div className="form-actions">
+                <button className="btn btn-large btn-primary" type="submit">Сохранить</button>
+            </div>
+        </form></div>
     }
 }
 

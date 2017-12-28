@@ -79,3 +79,10 @@ nav a.active {
     width: 5vw;
     background-color: rgb(153, 145, 145);
 }
+.form-scroll {
+    box-sizing: border-box;
+    padding: 2%;
+    width: 100vw;
+    height: calc(100vh - 40px);
+    overflow: scroll;
+}
