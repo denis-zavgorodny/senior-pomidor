@@ -17,6 +17,9 @@ module.exports = class Timeline {
         this.config = conf;
         this.dayStart = moment(conf.start, "HH:mm");
         this.dayEnd = moment(conf.end, "HH:mm");
+        if (this.dayEnd.isBefore(this.dayStart)) {
+            this.dayStart.subtract(1, 'days');
+        }
         this.lunchStart = moment(conf.lunch_from, "HH:mm");
         this.lunchEnd = moment(conf.lunch_to, "HH:mm");
         this.timeline = this.build();

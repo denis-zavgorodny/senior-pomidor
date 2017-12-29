@@ -1,8 +1,9 @@
-const { app, BrowserWindow, ipcRenderer, ipcMain} = require('electron');
+const { app, BrowserWindow, ipcRenderer, ipcMain, Notification} = require('electron');
 const path = require('path');
 const url = require('url');
 const Timeline = require('./src/Timeline');
-
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
 // Храните глобальную ссылку на объект окна, если вы этого не сделаете, окно будет
 // автоматически закрываться, когда объект JavaScript собирает мусор.
 let win;
@@ -27,7 +28,7 @@ function createWindow () {
 
 
     // Откроет DevTools.
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     // Возникает, когда окно будет закрыто.
     win.on('closed', () => {
@@ -61,6 +62,16 @@ app.on('activate', () => {
 })
 let pomodoroInterval;
 ipcMain.on('RUN_TIMER', (event, store) => {
+    emitter.emit('RUN_TIMER_PROXY', store);
+
+});
+ipcMain.on('STOP_TIMER', (event, store) => {
+    clearInterval(pomodoroInterval);
+    let timeline = new Timeline(store.Options);
+    event.sender.send('ON_INTERVAL', null, timeline);
+});
+
+emitter.on('RUN_TIMER_PROXY', (store) => {
     let timeline = new Timeline(store.Options);
     let lastState, currentState;
     pomodoroInterval = setInterval(() => {
@@ -69,21 +80,26 @@ ipcMain.on('RUN_TIMER', (event, store) => {
             if (acc === null) return now >= el.from && now <= el.to ? index : null;
             return acc;
         }, null);
-        event.sender.send('ON_INTERVAL', inInterval, timeline);
+        if (win) {
+            win.webContents.send('ON_INTERVAL', inInterval, timeline);
+        }
         if (timeline.timeline[inInterval]) {
             currentState = timeline.timeline[inInterval].type;
         }
         if (lastState !== currentState) {
-            console.log(currentState);
+            if (Notification.isSupported()) {
+                let notify = new Notification({
+                    title: currentState
+                });
+                notify.show();
+            }
+
         }
+        console.log(currentState + new Date());
         lastState = currentState;
     }, 500);
 });
-ipcMain.on('STOP_TIMER', (event, store) => {
-    clearInterval(pomodoroInterval);
-    let timeline = new Timeline(store.Options);
-    event.sender.send('ON_INTERVAL', null, timeline);
-})
+
 
 // В этом файле вы можете включить код другого основного процесса
 // вашего приложения. Можно также поместить их в отдельные файлы и применить к ним require.
