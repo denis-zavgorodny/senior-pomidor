@@ -9,6 +9,6 @@ class Home extends React.Component {
         return <HomeScreen {...this.props} />
     }
 }
-const mapStateToProps = state => ({ Timer: state.Timer });
+const mapStateToProps = state => ({ Timer: state.Timer, Options: state.Options });
 const mapDispatchToProps = (dispatch) => bindActionCreators(HomeActions, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

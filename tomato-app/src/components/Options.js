@@ -53,6 +53,15 @@ class Options extends React.Component {
                 <label><input type="checkbox" defaultValue={this.props.Options.simpleTimer} defaultChecked={this.props.Options.simpleTimer} name="simpleTimer" onChange={this.fieldChangeCheckbox.bind(this)} />
                 Режим простого таймера?</label>
             </div>
+
+            <label>Внешний вид таймера</label>
+            <select className="form-control" name="skin" onChange={this.fieldChange.bind(this)} defaultValue={this.props.Options.skin}>
+                <option value='circle'>Circle</option>
+                <option value='line'>Line</option>
+            </select>
+            <br />
+            <br />
+
             <div className="form-actions">
                 <button className="btn btn-large btn-primary" type="submit">Сохранить</button>
             </div>

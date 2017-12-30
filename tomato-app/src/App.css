@@ -12,6 +12,7 @@ nav a.active {
 }
 .main-screen {
     padding: 20px 0;
+    width: 100vw;
 }
 .start-button-wrapper {
     padding: 2vw 0 0;
