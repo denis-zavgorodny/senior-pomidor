@@ -17,8 +17,13 @@ module.exports = class Timeline {
         this.config = conf;
         this.dayStart = moment(conf.start, "HH:mm");
         this.dayEnd = moment(conf.end, "HH:mm");
-        if (this.dayEnd.isBefore(this.dayStart)) {
+        // ToDo
+        // Подумать как тут определять мы еще до полуночи или после
+        let _now = moment();
+        if (this.dayEnd.isBefore(this.dayStart) && _now.isBefore(this.dayEnd)) {
             this.dayStart.subtract(1, 'days');
+        } else if (this.dayEnd.isBefore(this.dayStart) && _now.isAfter(this.dayEnd)) {
+            this.dayEnd.add(1, 'days');
         }
         this.lunchStart = moment(conf.lunch_from, "HH:mm");
         this.lunchEnd = moment(conf.lunch_to, "HH:mm");

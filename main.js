@@ -11,7 +11,7 @@ let win;
 function createWindow () {
     // Создаёт окно браузера.
     win = new BrowserWindow({
-        width: 900,
+        width: 400,
         height: 400,
         webPreferences: {
             nodeIntegration: true,
@@ -68,7 +68,9 @@ ipcMain.on('RUN_TIMER', (event, store) => {
 ipcMain.on('STOP_TIMER', (event, store) => {
     clearInterval(pomodoroInterval);
     let timeline = new Timeline(store.Options);
-    event.sender.send('ON_INTERVAL', null, timeline);
+    if (win) {
+        win.webContents.send('ON_INTERVAL', null, timeline);
+    }
 });
 
 emitter.on('RUN_TIMER_PROXY', (store) => {
@@ -93,9 +95,7 @@ emitter.on('RUN_TIMER_PROXY', (store) => {
                 });
                 notify.show();
             }
-
         }
-        console.log(currentState + new Date());
         lastState = currentState;
     }, 500);
 });
