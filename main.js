@@ -11,6 +11,8 @@ let win;
 function createWindow () {
     // Создаёт окно браузера.
     win = new BrowserWindow({
+        backgroundColor: '#2e2c29',
+        title: 'Senior pomidor',
         width: 400,
         height: 400,
         webPreferences: {

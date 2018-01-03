@@ -49,13 +49,13 @@ class Options extends React.Component {
                 <input className="form-control" defaultValue={this.props.Options.lunch_to} name="lunch_to" onChange={this.fieldChange.bind(this)} />
             </div>
 
-            <div className="checkbox">
+            {/*<div className="checkbox">
                 <label><input type="checkbox" defaultValue={this.props.Options.simpleTimer} defaultChecked={this.props.Options.simpleTimer} name="simpleTimer" onChange={this.fieldChangeCheckbox.bind(this)} />
                 Режим простого таймера?</label>
-            </div>
+            </div>*/}
 
             <label>Внешний вид таймера</label>
-            <select className="form-control" name="skin" onChange={this.fieldChange.bind(this)} defaultValue={this.props.Options.skin}>
+            <select className="form-control" name="skin" onChange={this.fieldChange.bind(this)} defaultValue={this.props.Options.skin ? this.props.Options.skin : 'circle'}>
                 <option value='circle'>Circle</option>
                 <option value='line'>Line</option>
             </select>

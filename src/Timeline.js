@@ -1,4 +1,7 @@
 const moment = require('moment');
+const { intervalNames, helpers } = require('../tomato-app/src/Const.js');
+
+const { INTERVAL, BREAK, BREAKLONG, LUNCH } = intervalNames;
 
 const defaultState = {
     lunch_from: "16:00",
@@ -34,20 +37,32 @@ module.exports = class Timeline {
         const timeline = [];
         var period = 1;
         while (next.isBefore(this.dayEnd)) {
+            // Added working interval
             timeline.push({
                 from: next.format('X'),
                 to: next.add(this.config.interval, 'm').format('X'),
-                type: "INTERVAL"
+                type: INTERVAL
             });
-            timeline.push({
-                from: next.format('X'),
-                to: next.add(period % this.config.breakLongPeriod === 0 ? this.config.breakLong : this.config.break, 'm').format('X'),
-                type: period % this.config.breakLongPeriod === 0 ? "BREAKLONG" : "BREAK"
-            });
+            if (next.isBetween(this.lunchStart, this.lunchEnd)) {
+                // Added lunch time
+                timeline.push({
+                    from: next.format('X'),
+                    to: next.add(this.lunchEnd.diff(this.lunchStart, 'minutes'), 'm').format('X'),
+                    type: LUNCH
+                });
+            } else {
+                // Added breaking interval
+                timeline.push({
+                    from: next.format('X'),
+                    to: next.add(period % this.config.breakLongPeriod === 0 ? this.config.breakLong : this.config.break, 'm').format('X'),
+                    type: period % this.config.breakLongPeriod === 0 ? BREAKLONG : BREAK
+                });
+            }
+
             period++;
         }
         let last = timeline[timeline.length - 1];
-        if (last.type === 'BREAKLONG' || last.type === 'BREAK') {
+        if (helpers.isBreak(last.type)) {
             timeline.splice(timeline.length - 1, 1);
         }
         return timeline;
