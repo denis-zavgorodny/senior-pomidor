@@ -87,3 +87,16 @@ nav a.active {
     height: calc(100vh - 40px);
     overflow: scroll;
 }
+input:invalid {
+    outline: 2px solid #df360c;
+}
+.form-error-text {
+    display: none;
+    font-size: 3vw;
+    padding: 1% 0;
+    color: #df360c;
+}
+input:invalid + .form-error-text {
+    display: block;
+}
+
