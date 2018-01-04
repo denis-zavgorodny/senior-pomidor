@@ -1,3 +1,4 @@
+.DS_Store
 tomato.code-workspace
 node_modules
 /tomato-app/build/
