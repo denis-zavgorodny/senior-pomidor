@@ -17,6 +17,14 @@
             "wrong_pomidoro_big_break_length": "Big break should be from 1 to 10 minutes",
             "wrong_pomidoro_big_break_period": "Valid values ​​are from 2 to 10",
             "timer_lang": "Choise your language",
+            "INTERVAL_TITLE": "Pomidoro",
+            "INTERVAL_TEXT": "Let's works",
+            "BREAK_TITLE": "Pomidoro",
+            "BREAK_TEXT": "Stay relax",
+            "BREAKLONG_TITLE": "Pomidoro",
+            "BREAKLONG_TEXT": "Stay relax",
+            "LUNCH_TITLE": "Pomidoro",
+            "LUNCH_TEXT": "Time for lunch",
             "amount_of_bananas": "{{count}} banana",
             "amount_of_bananas_plural": "{{count}} bananas"
         }

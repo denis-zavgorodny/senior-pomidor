@@ -17,6 +17,14 @@
             "wrong_pomidoro_big_break_length": "Большой перерыв должен быть от 5 до 30 минут",
             "wrong_pomidoro_big_break_period": "Допустимые значения от 2 до 10",
             "timer_lang": "Выберите язык",
+            "INTERVAL_TITLE": "Помидорка",
+            "INTERVAL_TEXT": "Давайте поработаем!",
+            "BREAK_TITLE": "Помидорка",
+            "BREAK_TEXT": "Расслабся, чувак!",
+            "BREAKLONG_TITLE": "Помидорка",
+            "BREAKLONG_TEXT": "Расслабся, чувак!",
+            "LUNCH_TITLE": "Помидорка",
+            "LUNCH_TEXT": "Пора покушать!",
             "amount_of_bananas": "{{count}} banana",
             "amount_of_bananas_plural": "{{count}} bananas"
         }

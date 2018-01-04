@@ -3,9 +3,9 @@ const path = require('path');
 const url = require('url');
 const Timeline = require('./src/Timeline');
 const EventEmitter = require('events');
+const i18next = require('./tomato-app/node_modules/i18next');
+
 const emitter = new EventEmitter();
-// Храните глобальную ссылку на объект окна, если вы этого не сделаете, окно будет
-// автоматически закрываться, когда объект JavaScript собирает мусор.
 let win;
 
 function createWindow () {
@@ -78,7 +78,8 @@ ipcMain.on('STOP_TIMER', (event, store) => {
 });
 
 emitter.on('RUN_TIMER_PROXY', (store) => {
-    let timeline = new Timeline(store.Options);
+    const { Options, Timer } = store;
+    let timeline = new Timeline(Options);
     let lastState, currentState;
     pomodoroInterval = setInterval(() => {
         let now = Math.round(new Date().getTime() / 1000);
@@ -92,10 +93,15 @@ emitter.on('RUN_TIMER_PROXY', (store) => {
         if (timeline.timeline[inInterval]) {
             currentState = timeline.timeline[inInterval].type;
         }
+        i18next.init({
+            lng: Options.lang,
+            resources: require(`./tomato-app/src/i18/${Options.lang}.json`)
+        });
         if (lastState !== currentState) {
             if (Notification.isSupported()) {
                 let notify = new Notification({
-                    title: currentState
+                    title: i18next.t(`${currentState}_TITLE`),
+                    body: i18next.t(`${currentState}_TEXT`)
                 });
                 notify.show();
             }
