@@ -1,0 +1,24 @@
+{
+    "en": {
+        "translation": {
+            "start_of_day": "Start of the day",
+            "end_of_day": "End of the day",
+            "pomidoro_length": "Pomidoro length, minutes",
+            "small_break": "Small break, minutes",
+            "big_break": "Big break, minutes",
+            "big_break_at": "Big break every",
+            "lunch_time": "Lunch break",
+            "timer_skin": "Timer theme",
+            "save": "Save",
+            "start": "Start",
+            "wrong_time": "Wrong time format",
+            "wrong_pomidoro_length": "Pomidoro length should be from 1 to 60 minutes",
+            "wrong_pomidoro_small_break_length": "Small break should be from 1 to 10 minutes",
+            "wrong_pomidoro_big_break_length": "Big break should be from 1 to 10 minutes",
+            "wrong_pomidoro_big_break_period": "Valid values ​​are from 2 to 10",
+            "timer_lang": "Choise your language",
+            "amount_of_bananas": "{{count}} banana",
+            "amount_of_bananas_plural": "{{count}} bananas"
+        }
+    }
+}

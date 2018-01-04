@@ -23,8 +23,10 @@ function createWindow () {
 
     // и загрузит index.html приложение.
     win.loadURL(url.format({
-        pathname: process.env.NODE_ENV === 'development' ? 'localhost:3000/' : path.join(__dirname, 'tomato-app/build/index.html'),
-        protocol: process.env.NODE_ENV === 'development' ? 'http:' : 'file:',
+        // pathname: process.env.NODE_ENV === 'development' ? 'localhost:3000/' : path.join(__dirname, 'tomato-app/build/index.html'),
+        // protocol: process.env.NODE_ENV === 'development' ? 'http:' : 'file:',
+        pathname: 'localhost:3000/',
+        protocol: 'http:',
         slashes: true
     }));
 

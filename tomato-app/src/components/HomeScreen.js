@@ -1,9 +1,17 @@
 import React from "react";
 import TimeLineCircle from "./TimeLineCircle";
 import TimeLineSimple from "./TimeLineSimple";
+import i18next from 'i18next';
 import moment from "moment";
 
 class HomeScreen extends React.Component {
+    componentWillMount() {
+        const { Options } = this.props;
+        i18next.init({
+            lng: Options.lang,
+            resources: require(`../i18/${Options.lang}.json`)
+        });
+    }
     start(event) {
         if(this.props.Timer.working) {
             this.props.stopTimer();
@@ -38,7 +46,7 @@ class HomeScreen extends React.Component {
         }
         return <div className={`main-screen ${skin}` }>
             {TimeLineHTML}
-            <div className="start-button-wrapper"><a className={buttonClass} href="" onClick={this.start.bind(this)}><span>{this.props.Timer.working ? counter : "start"}</span></a></div>
+            <div className="start-button-wrapper"><a className={buttonClass} href="" onClick={this.start.bind(this)}><span>{this.props.Timer.working ? counter : i18next.t('start')}</span></a></div>
         </div>
     }
 }

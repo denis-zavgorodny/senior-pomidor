@@ -7,7 +7,8 @@ const defaultState = {
     breakLongPeriod: 4, // minutes
     start: "10:00",
     end: "19:00",
-    simpleTimer: false
+    simpleTimer: false,
+    lang: 'en'
 };
 
 export default function (state = defaultState, action) {
