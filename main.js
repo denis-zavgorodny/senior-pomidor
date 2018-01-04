@@ -3,7 +3,7 @@ const path = require('path');
 const url = require('url');
 const Timeline = require('./src/Timeline');
 const EventEmitter = require('events');
-const i18next = require('./tomato-app/node_modules/i18next');
+const i18next = require('i18next');
 
 const emitter = new EventEmitter();
 let win;
@@ -12,13 +12,14 @@ function createWindow () {
     // Создаёт окно браузера.
     win = new BrowserWindow({
         backgroundColor: '#2e2c29',
-        title: 'Senior pomidor',
+        title: 'Senior pomodoro',
         width: 400,
         height: 400,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
             preload: __dirname + '/preload.js'
-        }
+        },
+        icon: path.join(__dirname, '/assets/icon.png'),
     });
 
     // и загрузит index.html приложение.

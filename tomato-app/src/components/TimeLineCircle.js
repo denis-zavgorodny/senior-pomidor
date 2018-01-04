@@ -1,10 +1,7 @@
 import React from "react";
 import PieChart from 'react-minimal-pie-chart';
 import './TimeLine.css';
-import { intervalNames, helpers }  from '../Const';
-
-const { INTERVAL, BREAK, BREAKLONG, LUNCH } = intervalNames;
-
+import { intervalNames }  from '../Const';
 class TimeLine extends React.Component {
 
     render() {
@@ -19,6 +16,7 @@ class TimeLine extends React.Component {
                 key: index,
                 color: el.type === intervalNames.INTERVAL ? `RGBA(0,0,0,${alfa})` : `RGBA(255,0,0,${alfa})`
             });
+            return el;
         });
         return <div className='circle-chart'><PieChart
             startAngle={-90}

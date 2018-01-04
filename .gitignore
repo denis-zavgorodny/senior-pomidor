@@ -3,3 +3,4 @@ tomato.code-workspace
 node_modules
 /tomato-app/build/
 /*darwin*
+/release*

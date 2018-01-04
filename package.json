@@ -1,13 +1,15 @@
 {
     "name": "tomato-app",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "main": "main.js",
+    "icon": "assets/icon.icns",
     "dependencies": {
         "electron": "^1.7.10",
+        "i18next": "^10.2.2",
         "moment": "^2.20.1"
     },
     "scripts": {
         "app": "env NODE_ENV=development ./node_modules/.bin/electron .",
-        "start": "./node_modules/.bin/electron ."
+        "build": "electron-packager . pomodoro --ignore='tomato-app/node_modules(.*)|/graphics/' --overwrite --platform=darwin --arch=x64 --icon=assets/icon.icns --prune=true --out=release-builds"
     }
 }
