@@ -8,7 +8,8 @@ const defaultState = {
     start: "10:00",
     end: "19:00",
     simpleTimer: false,
-    lang: 'en'
+    lang: 'en',
+    skin: 'circle'
 };
 
 export default function (state = defaultState, action) {

@@ -12,24 +12,14 @@ import emmiterToElectron from './enhancers/emmiterToElectron';
 
 let store;
 
-if(process.env.NODE_ENV === 'development') {
-    store = createStore(
-        rootReducer,
-        compose(
-            applyMiddleware(thunk, emmiterToElectron),
-            persistState(),
-            // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-        )
-    );
-} else {
-    store = createStore(
-        rootReducer,
-        compose(
-            applyMiddleware(thunk),
-            persistState(),
-        )
-    );
-}
+store = createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(thunk, emmiterToElectron),
+        persistState(),
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+);
 
 if (window.ipcRenderer) {
     window.ipcRenderer.removeAllListeners('ON_INTERVAL');

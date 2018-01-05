@@ -1,9 +1,14 @@
-const { app, BrowserWindow, ipcRenderer, ipcMain, Notification} = require('electron');
+const { app, BrowserWindow, ipcRenderer, ipcMain, Notification, protocol } = require('electron');
 const path = require('path');
 const url = require('url');
+const http = require('http');
+const finalhandler = require('finalhandler');
 const Timeline = require('./src/Timeline');
 const EventEmitter = require('events');
 const i18next = require('i18next');
+const serveStatic = require('serve-static');
+
+const _port = 3033;
 
 const emitter = new EventEmitter();
 let win;
@@ -22,10 +27,8 @@ function createWindow () {
     });
 
     win.loadURL(url.format({
-        // pathname: process.env.NODE_ENV === 'development' ? 'localhost:3000/' : path.join(__dirname, 'tomato-app/build/index.html'),
-        // protocol: process.env.NODE_ENV === 'development' ? 'http:' : 'file:',
-        pathname: 'localhost:3000/',
-        protocol: 'http:',
+        pathname: process.env.NODE_ENV === 'development' ? 'localhost:3000/' : `localhost:${_port}/build/index.html`,
+        protocol: process.env.NODE_ENV === 'development' ? 'http:' : 'http:',
         slashes: true
     }));
 
@@ -34,7 +37,14 @@ function createWindow () {
     });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+    var serve = serveStatic(path.join(__dirname, 'tomato-app/'), { 'index': ['build/index.html', 'build/index.htm'] });
+    var server = http.createServer(function onRequest(req, res) {
+        serve(req, res, finalhandler(req, res));
+    });
+    server.listen(_port);
+    createWindow();
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
@@ -49,6 +59,7 @@ app.on('activate', () => {
 })
 let pomodoroInterval;
 ipcMain.on('RUN_TIMER', (event, store) => {
+    console.log(event, store);
     emitter.emit('RUN_TIMER_PROXY', store);
 
 });
