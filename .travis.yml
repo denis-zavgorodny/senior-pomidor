@@ -1,0 +1,12 @@
+os: osx
+osx_image: xcode9.1
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+script:
+- npm run build
+#branches:
+#  except:
+#    - "/^v\\d+\\.\\d+\\.\\d+$/"
