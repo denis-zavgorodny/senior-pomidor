@@ -1,7 +1,13 @@
 export function save(state) {
-    return {
-        type: 'SAVE_OPTIONS',
-        payload: state
+    return (dispatch) => {
+        dispatch({
+            type: 'SAVE_OPTIONS',
+            payload: state
+        });
+        dispatch({
+            type: 'SET_TIMER_PROXY',
+            payload: state
+        });
     }
 }
 

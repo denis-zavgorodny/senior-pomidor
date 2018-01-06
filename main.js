@@ -70,6 +70,14 @@ ipcMain.on('STOP_TIMER', (event, store) => {
         win.webContents.send('ON_INTERVAL', null, timeline);
     }
 });
+ipcMain.on('SET_TIMER_PROXY', (event, store) => {
+    clearInterval(pomodoroInterval);
+    let timeline = new Timeline(store.Options);
+    if (win) {
+        win.webContents.send('ON_INTERVAL', null, timeline);
+    }
+});
+
 
 emitter.on('RUN_TIMER_PROXY', (store) => {
     const { Options, Timer } = store;
