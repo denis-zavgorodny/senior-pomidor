@@ -80,6 +80,7 @@ class Options extends React.Component {
             </select>
             <br />
             <br />
+            <label><input type="checkbox" defaultValue={this.props.Options.simpleTimer} defaultChecked={this.props.Options.simpleTimer} name="simpleTimer" onChange={this.fieldChangeCheckbox.bind(this)} />&nbsp;{i18next.t('simple_mode_label')}</label>
 
             <div className="form-actions">
                 <button className="btn btn-large btn-primary" type="submit">{i18next.t('save')}</button>

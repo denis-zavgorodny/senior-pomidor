@@ -17,6 +17,7 @@
             "wrong_pomidoro_big_break_length": "Большой перерыв должен быть от 5 до 30 минут",
             "wrong_pomidoro_big_break_period": "Допустимые значения от 2 до 10",
             "timer_lang": "Выберите язык",
+            "simple_mode_label": "Режим простого таймера?",
             "INTERVAL_TITLE": "Помидорка",
             "INTERVAL_TEXT": "Давайте поработаем!",
             "BREAK_TITLE": "Помидорка",

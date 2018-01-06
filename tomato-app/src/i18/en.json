@@ -17,6 +17,7 @@
             "wrong_pomidoro_big_break_length": "Big break should be from 1 to 10 minutes",
             "wrong_pomidoro_big_break_period": "Valid values ​​are from 2 to 10",
             "timer_lang": "Choise your language",
+            "simple_mode_label": "Simple mode?",
             "INTERVAL_TITLE": "Pomidoro",
             "INTERVAL_TEXT": "Let's works",
             "BREAK_TITLE": "Pomidoro",

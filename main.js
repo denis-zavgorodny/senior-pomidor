@@ -59,9 +59,7 @@ app.on('activate', () => {
 })
 let pomodoroInterval;
 ipcMain.on('RUN_TIMER', (event, store) => {
-    console.log(event, store);
     emitter.emit('RUN_TIMER_PROXY', store);
-
 });
 ipcMain.on('STOP_TIMER', (event, store) => {
     clearInterval(pomodoroInterval);

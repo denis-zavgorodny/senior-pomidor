@@ -18,7 +18,12 @@ const defaultState = {
 module.exports = class Timeline {
     constructor(conf) {
         this.config = conf;
-        this.dayStart = moment(conf.start, "HH:mm");
+        if (this.config.simpleTimer === true) {
+            this.dayStart = moment();
+        } else {
+            this.dayStart = moment(conf.start, "HH:mm");
+        }
+
         this.dayEnd = moment(conf.end, "HH:mm");
         // ToDo
         // Подумать как тут определять мы еще до полуночи или после
