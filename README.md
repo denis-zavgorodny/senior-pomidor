@@ -1,6 +1,4 @@
-# Senior pomodoro v 0.1.1 
-
-> Not stable
+# Senior pomodoro v 0.1.2 
 
 This is MacOS application to implement [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique). The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. These intervals are named pomodoros, the plural in English of the Italian word pomodoro (tomato).
 
@@ -14,7 +12,7 @@ This is MacOS application to implement [Pomodoro Technique](https://en.wikipedia
 ## ToDO
 
 * iPhone notification
-* Hhistory and statistics
+* History and statistics
 
 ## Screenshot
 
