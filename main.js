@@ -63,25 +63,25 @@ ipcMain.on('RUN_TIMER', (event, store) => {
 });
 ipcMain.on('STOP_TIMER', (event, store) => {
     clearInterval(pomodoroInterval);
-    let timeline = new Timeline(store.Options);
-    if (win) {
-        win.webContents.send('ON_INTERVAL', null, timeline);
-    }
 });
 ipcMain.on('SET_TIMER_PROXY', (event, store) => {
+    emitter.emit('STOP_TIMER_PROXY', store);
+});
+
+
+emitter.on('STOP_TIMER_PROXY', (store) => {
     clearInterval(pomodoroInterval);
     let timeline = new Timeline(store.Options);
     if (win) {
         win.webContents.send('ON_INTERVAL', null, timeline);
     }
 });
-
-
 emitter.on('RUN_TIMER_PROXY', (store) => {
     const { Options, Timer } = store;
     let timeline = new Timeline(Options);
-    let lastState, currentState;
+    let lastState = null;
     pomodoroInterval = setInterval(() => {
+        let currentState = null;
         let now = Math.round(new Date().getTime() / 1000);
         let inInterval = timeline.timeline.reduce((acc, el, index) => {
             if (acc === null) return now >= el.from && now <= el.to ? index : null;
@@ -97,14 +97,27 @@ emitter.on('RUN_TIMER_PROXY', (store) => {
             lng: Options.lang,
             resources: require(`./tomato-app/src/i18/${Options.lang}.json`)
         });
+
         if (lastState !== currentState) {
             if (Notification.isSupported()) {
-                let notify = new Notification({
-                    title: i18next.t(`${currentState}_TITLE`),
-                    body: i18next.t(`${currentState}_TEXT`)
-                });
+                let notify;
+                if (currentState) {
+                    notify = new Notification({
+                        title: i18next.t(`${currentState}_TITLE`),
+                        body: i18next.t(`${currentState}_TEXT`)
+                    });
+                } else {
+                    notify = new Notification({
+                        title: i18next.t('STOP_TITLE'),
+                        body: i18next.t('STOP_TEXT')
+                    });
+                }
+
                 notify.show();
             }
+        }
+        if (!currentState) {
+            emitter.emit('STOP_TIMER_PROXY', store);
         }
         lastState = currentState;
     }, 500);

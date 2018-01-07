@@ -27,7 +27,13 @@ if (window.ipcRenderer) {
         store.dispatch({
             type: 'SET_TIMELINE',
             payload: {inInterval, timeline}
-        })
+        });
+        if (inInterval === null) {
+            store.dispatch({
+                type: 'STOP_TIMER',
+                payload: store.getState()
+            });
+        }
     });
 }
 

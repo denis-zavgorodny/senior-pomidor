@@ -12,7 +12,7 @@
             "save": "Save",
             "start": "Start",
             "wrong_time": "Wrong time format",
-            "wrong_pomidoro_length": "Pomidoro length should be from 1 to 60 minutes",
+            "wrong_pomidoro_length": "Pomidoro length should be from 20 to 60 minutes",
             "wrong_pomidoro_small_break_length": "Small break should be from 1 to 10 minutes",
             "wrong_pomidoro_big_break_length": "Big break should be from 1 to 10 minutes",
             "wrong_pomidoro_big_break_period": "Valid values ​​are from 2 to 10",
@@ -26,6 +26,8 @@
             "BREAKLONG_TEXT": "Stay relax",
             "LUNCH_TITLE": "Pomidoro",
             "LUNCH_TEXT": "Time for lunch",
+            "STOP_TITLE": "Pomidoro",
+            "STOP_TEXT": "Pomodoro is over!",
             "amount_of_bananas": "{{count}} banana",
             "amount_of_bananas_plural": "{{count}} bananas"
         }

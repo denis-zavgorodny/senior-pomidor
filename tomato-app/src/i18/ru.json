@@ -12,7 +12,7 @@
             "save": "Сохранить",
             "start": "Старт",
             "wrong_time": "Вредено не верное время",
-            "wrong_pomidoro_length": "Длина помидорки должна быть от 1 до 60 минут",
+            "wrong_pomidoro_length": "Длина помидорки должна быть от 20 до 60 минут",
             "wrong_pomidoro_small_break_length": "Малый перерыв должен быть от 1 до 10 минут",
             "wrong_pomidoro_big_break_length": "Большой перерыв должен быть от 5 до 30 минут",
             "wrong_pomidoro_big_break_period": "Допустимые значения от 2 до 10",
@@ -26,6 +26,8 @@
             "BREAKLONG_TEXT": "Расслабся, чувак!",
             "LUNCH_TITLE": "Помидорка",
             "LUNCH_TEXT": "Пора покушать!",
+            "STOP_TITLE": "Помидорка",
+            "STOP_TEXT": "Помидорки кончились! Ты славно потрудился!",
             "amount_of_bananas": "{{count}} banana",
             "amount_of_bananas_plural": "{{count}} bananas"
         }

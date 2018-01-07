@@ -38,7 +38,7 @@ class Options extends React.Component {
             </div>
             <div className="form-group ">
                 <label>{i18next.t('pomidoro_length')}</label>
-                <input required type="number" min="1" max="60" className="form-control" defaultValue={this.props.Options.interval} name="interval" onChange={this.fieldChange.bind(this)} />
+                <input required type="number" min="20" max="60" className="form-control" defaultValue={this.props.Options.interval} name="interval" onChange={this.fieldChange.bind(this)} />
                 <div className="form-error-text"><span className="icon icon-info-circled"></span>&nbsp;{i18next.t('wrong_pomidoro_length')}</div>
             </div>
             <div className="form-group ">

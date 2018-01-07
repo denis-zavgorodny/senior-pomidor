@@ -41,6 +41,7 @@ module.exports = class Timeline {
         let next = this.dayStart;
         const timeline = [];
         var period = 1;
+
         while (next.isBefore(this.dayEnd)) {
             // Added working interval
             timeline.push({
